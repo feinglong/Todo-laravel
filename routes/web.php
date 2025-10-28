@@ -69,6 +69,14 @@ Route::delete('/tasks/{task}', function (Task $task) {
 
 })->name('tasks.destroy');
 
+Route::put('tasks/{task}/toggle-complete', function (Task $task) {
+    $task->toggleComplete();
+
+    return redirect()->back()
+        ->with('success', 'Task marked as complete!');
+
+})->name('tasks.toggle-complete');
+
 Route::fallback(function () {
     return 'The page you are looking for does not exist.';
 });
